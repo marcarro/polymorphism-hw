@@ -18,6 +18,7 @@ int main() {
   Envelope envelope1(name1, addy1, city1, state1, zip1, name, addy, city, state, zip, 30, 26, 30, 15);
   
   vector<Shipment*> shipments = {&package1, &envelope1};
+  int totalCost = 0;
   
   for (auto shipment: shipments) {
     cout << 
@@ -32,12 +33,11 @@ int main() {
       "\nAddress: " << shipment->getRecipientAddress() << 
       "\nCity: " << shipment->getRecipientCity() <<
       "\nState: " << shipment->getRecipientState() <<
-      "\nZip: " << shipment->getRecipientZip() << "\n\n\n";
-
-      /* TODO: !!
-      Also, call the calculateCost function of each shipment and print 
-      the result. Keep track of the total shipping cost for all shipments 
-      in the vector, and show this total when the cycle ends.*/ 
-
+      "\nZip: " << shipment->getRecipientZip() << 
+      "\n\nCost: " << shipment->calculateCost() << "\n\n\n";
+      
+      totalCost += shipment->calculateCost();
   }
+
+  cout << "Total cost of packages: " << totalCost << "\n";
 }
